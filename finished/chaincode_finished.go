@@ -114,7 +114,7 @@ func (t *SimpleChaincode) person(stub shim.ChaincodeStubInterface, args []string
 func (t *SimpleChaincode) write_ng(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, value string
 	var err error
-	fmt.Println("running write()")
+	fmt.Println("running write_ng()")
 
 	if len(args) != 2 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 2. name of the key and value to set")
