@@ -64,7 +64,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	// Handle different functions
 	if function == "init" {
 		return t.Init(stub, "init", args)
-	} else if function == "write" {
+	} else if function == "writetm" {
 		return t.write (stub, args)
 	} else if function == "person" {
 		fmt.Println("inside person if statement")
