@@ -65,7 +65,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	} else if function == "write" {
 		return t.write(stub, args)
 	} else if function == "person" {
-		retrun t.person(stub, args)
+		return t.person(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function)
 
