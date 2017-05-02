@@ -65,7 +65,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	} else if function == "write" {
 		return t.write(stub, args)
 	} else if function == "person" {
-		retrun t.createperson(stub, args)
+		retrun t.person(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function)
 
@@ -105,7 +105,7 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 }
 
 // insert person info
-func (t *SimpleChaincode) createperson(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+func (t *SimpleChaincode) person(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, value string
 	var err error
 	fmt.Println("running person()")
