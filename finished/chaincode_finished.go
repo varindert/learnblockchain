@@ -27,6 +27,13 @@ import (
 type SimpleChaincode struct {
 }
 
+type PersonInfo struct {
+	Firstname string `json:"firstname"`
+	Lastname  string `json:"lastname"`
+	City  string `json:"city"`
+}
+
+
 func main() {
 	err := shim.Start(new(SimpleChaincode))
 	if err != nil {
@@ -57,6 +64,8 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 		return t.Init(stub, "init", args)
 	} else if function == "write" {
 		return t.write(stub, args)
+	} else if function == "person" {
+		retrun t.createperson(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function)
 
@@ -81,6 +90,25 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	var key, value string
 	var err error
 	fmt.Println("running write()")
+
+	if len(args) != 2 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 2. name of the key and value to set")
+	}
+
+	key = args[0] //rename for funsies
+	value = args[1]
+	err = stub.PutState(key, []byte(value)) //write the variable into the chaincode state
+	if err != nil {
+		return nil, err
+	}
+	return nil, nil
+}
+
+// insert person info
+func (t *SimpleChaincode) person(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+	var key, value string
+	var err error
+	fmt.Println("running person()")
 
 	if len(args) != 2 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 2. name of the key and value to set")
