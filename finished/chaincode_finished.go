@@ -65,7 +65,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	if function == "init" {
 		return t.Init(stub, "init", args)
 	} else if function == "write" {
-		return t.write_ng (stub, args)
+		return t.write (stub, args)
 	} else if function == "person" {
 		fmt.Println("inside person if statement")
 		return t.person(stub, args)
@@ -111,7 +111,7 @@ func (t *SimpleChaincode) person(stub shim.ChaincodeStubInterface, args []string
 }
 
 // write - invoke function to write key/value pair
-func (t *SimpleChaincode) write_ng(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, value string
 	var err error
 	fmt.Println("running write_ng()")
